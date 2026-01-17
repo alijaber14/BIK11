@@ -33,13 +33,12 @@ body::before {
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: inherit;
-  filter: blur(15px);
+  filter: blur(15px); /* قوة الضبابية */
   z-index: -1;
 }
 
 header {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
@@ -48,31 +47,24 @@ header {
 }
 
 header .logo {
-  height: 80px;
-  margin-bottom: 10px;
+  height: 100px;
+  margin-right: 15px;
 }
 
 header h1 {
-  font-family: 'Amiri', serif;
+  font-family: 'Amiri', serif; /* فونت رقعة عربي */
   margin: 0;
-  font-size: 30px;
+  font-size: 35px;
   color: var(--accent);
   letter-spacing: 1px;
-}
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
 }
 
 nav a {
   color: var(--text);
   text-decoration: none;
-  margin: 0 5px;
+  margin: 0 14px;
   font-weight: 500;
   transition: 0.3s;
-  font-size: 16px;
 }
 
 nav a:hover { color: var(--accent); }
@@ -81,7 +73,7 @@ section {
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.8s ease-out;
-  padding: 60px 20px;
+  padding: 80px 20px;
   max-width: 1100px;
   margin: auto;
 }
@@ -99,13 +91,13 @@ h2 {
 }
 
 #home { text-align: center; }
-#home h2 { font-size: 28px; margin: 0; }
-#home p { color: var(--muted); max-width: 90%; margin: 10px auto 30px; font-size: 18px; }
+#home h2 { font-size: 34px; margin: 0; }
+#home p { color: var(--muted); max-width: 700px; margin: 10px auto 30px; }
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
   margin-top: 40px;
 }
 
@@ -121,18 +113,19 @@ h2 {
 .project:hover { transform: translateY(-5px); box-shadow: 0 8px 18px rgba(0,0,0,0.6); }
 .project img { 
   width: 100%; 
-  height: auto;
-  object-fit: contain;
-  max-height: 250px;
-  display: block;
+  height: auto;      /* يخلي ارتفاع الصورة حسب النسبة الأصلية */
+  object-fit: contain; /* يخلي الصورة كاملة داخل الكادر بدون قص */
+  max-height: 300px;  /* اختياري: تحكم أقصى ارتفاع */
+}
+.project img { 
   margin-bottom: 10px;
 }
 
-.project h3 { margin: 10px; font-size: 16px; color: var(--accent); text-align:center; }
+.project h3 { margin: 10px; font-size: 18px; color: var(--accent); }
 
-#about p { max-width: 100%; color: var(--muted); line-height: 1.7; }
+#about p { max-width: 800px; color: var(--muted); line-height: 1.7; }
 
-form { display: flex; flex-direction: column; max-width: 100%; margin-top: 20px; }
+form { display: flex; flex-direction: column; max-width: 600px; margin-top: 20px; }
 input, textarea {
   background: var(--card);
   border: 1px solid #333;
@@ -167,16 +160,16 @@ footer {
 
 .socials {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  margin-top: 40px;
   flex-wrap: wrap;
   gap: 20px;
-  margin-top: 30px;
 }
 
 .socials a {
   text-decoration: none;
   color: var(--accent);
-  font-size: 22px;
+  font-size: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -199,72 +192,35 @@ footer {
   z-index: 10000;
   overflow-y: auto;
 }
-.gallery img { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius:10px; }
-.gallery .close { position: fixed; top: 20px; right: 30px; font-size: 35px; color: var(--accent); cursor: pointer; z-index: 10001; }
-
-#about h2 {
+.gallery img { max-width: 80%; border-radius: 10px; }
+.gallery img {
+  max-width: 90%;     /* خليها أكبر شوية */
+  max-height: 80vh;   /* ما تتجاوزش ارتفاع الشاشة */
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain; /* يحافظ على نسب الصورة كاملة */
+}
+.gallery .close {
+  position: fixed; /* بدل absolute */
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
   color: var(--accent);
-  border-bottom: 2px solid var(--accent);
-  width: fit-content;
-  padding-bottom: 6px;
-  margin-bottom: 20px;
+  cursor: pointer;
+  z-index: 10001; /* أعلى من الصور */
 }
 
-.about-section {
-  background: var(--card);
-  padding: 15px;
-  border-radius: var(--radius);
-  margin-bottom: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  transition: transform 0.3s, box-shadow 0.3s;
+
+@media (max-width: 600px) {
+  .gallery img { max-width: 95%; }
+  .gallery .close { font-size: 35px; top: 10px; right: 15px; }
 }
 
-.about-section:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.6);
-}
-
-.about-section h3 {
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-
-.about-section p {
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-/* Reviews */
-#stars span { font-size: 28px; cursor: pointer; color: #fff; }
-.reviewItem { background: #161616; color: #f5f5f5; margin: 10px 0; padding: 10px; border-radius: 8px; }
-textarea, input { width: 100%; padding: 8px; border-radius: 6px; margin-top: 10px; background:#161616; border:1px solid #333; color:#f5f5f5;}
-button { margin-top: 5px; padding: 8px 12px; border-radius: 6px; background: #00bcd4; border: none; cursor: pointer; }
-button:hover { background: #00acc1; }
-
-/* Media Queries */
-@media (max-width: 1024px) {
-  header h1 { font-size: 28px; }
-  .project h3 { font-size: 15px; }
-}
-
-@media (max-width: 768px) {
-  header { flex-direction: column; align-items: center; }
-  header .logo { margin-bottom: 10px; height:70px; }
-  nav { justify-content: center; gap:10px; }
-  #home h2 { font-size: 26px; }
-  #home p { font-size: 16px; }
-}
-
-@media (max-width: 480px) {
-  header h1 { font-size: 22px; text-align: center; }
-  .project img { max-height: 200px; }
-  #home h2 { font-size: 22px; }
-  #home p { font-size: 14px; }
-  .socials a { font-size: 20px; }
-}
 </style>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <header>
@@ -278,205 +234,201 @@ button:hover { background: #00acc1; }
   </nav>
 </header>
 
+
 <section id="home">
-  <h2>بيك النجارة</h2>
-  <p>نصمم وننفذ أثاثك بكل احترافية، من الفكرة إلى التنفيذ الكامل — بيك النجارة في الطائف.</p>
-  <div class="socials">
-    <a href="https://www.instagram.com/bik_alnaggarah14" target="_blank"><i class="fab fa-instagram"></i><span>Instagram</span></a>
-    <a href="https://www.tiktok.com/@bik2025" target="_blank"><i class="fab fa-tiktok"></i><span>TikTok</span></a>
-    <a href="https://wa.me/9660570218271" target="_blank"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
-    <a href="tel:+9660570218271"><i class="fas fa-phone"></i><span>Call</span></a>
-    <a href="https://maps.app.goo.gl/f6x4apoKEWvCGjEx9" target="_blank"><i class="fas fa-globe"></i><span>Location</span></a>
-    <a href="https://www.snapchat.com/add/bikalnggarah" target="_blank"><i class="fab fa-snapchat-ghost"></i><span>Snapchat</span></a>
-  </div>
+  <h2>   بيك النجارة</h2>
+<p style="font-size:20px;">نصمم وننفذ أثاثك بكل احترافية، من الفكرة إلى التنفيذ الكامل — بيك النجارة في الطائف.</p>
+ <div class="socials">
+  <a href="https://www.instagram.com/bik_alnaggarah14?igsh=MTJkejluajg1cnNoNA==" target="_blank">
+    <i class="fab fa-instagram"></i><span>Instagram</span>
+  </a>
+  <a href="https://www.tiktok.com/@bik2025?_t=ZS-90SGHAc6Lto&_r=1" target="_blank">
+    <i class="fab fa-tiktok"></i><span>TikTok</span>
+  </a>
+  <a href="https://wa.me/9660570218271" target="_blank">
+    <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
+  </a>
+  <a href="tel:+9660570218271">
+    <i class="fas fa-phone"></i><span>Call</span>
+  </a>
+  <a href="https://maps.app.goo.gl/f6x4apoKEWvCGjEx9" target="_blank">
+    <i class="fas fa-globe"></i><span>Location</span>
+  </a>
+  <a href="https://www.snapchat.com/add/bikalnggarah?share_id=0lfq6jlD5q0&locale=en-EG" target="_blank">
+    <i class="fab fa-snapchat-ghost"></i><span>Snapchat</span>
+  </a>
+</div>
+
 </section>
 
 <section id="about">
   <h2>عن المؤسسة</h2>
   <p>بيك النجارة هي مؤسسة سعودية متخصصة في تصميم وتنفيذ الأعمال الخشبية الحديثة والكلاسيكية، من الأبواب إلى الأثاث والمطابخ. نعمل على تحويل أفكار عملائنا إلى واقع متميز بجودة عالية ودقة في التفاصيل.</p>
+</section>
+<section id="about">
+  <h2>عن بيك النجارة</h2>
+  <p>بيك النجارة هي مؤسسة سعودية متخصصة في تصميم وتنفيذ الأعمال الخشبية الحديثة والكلاسيكية، من الأبواب إلى الأثاث والمطابخ. نعمل على تحويل أفكار عملائنا إلى واقع متميز بجودة عالية ودقة في التفاصيل.</p>
 
   <div class="about-section">
     <h3>إبداع في كل تفصيلة</h3>
-    <p>نحوّل كل فكرة إلى قطعة فنية فريدة...</p>
+    <p>نحوّل كل فكرة إلى قطعة فنية فريدة. من تصميم الأثاث الحديث إلى القطع الكلاسيكية، الجودة والدقة هما شعارنا الأساسي في كل مشروع.</p>
   </div>
+
   <div class="about-section">
     <h3>تصنيع احترافي</h3>
-    <p>كل قطعة نجارة ننتجها تُصنع بعناية وبتقنيات حديثة لضمان المتانة والجمال...</p>
+    <p>كل قطعة نجارة ننتجها تُصنع بعناية وبتقنيات حديثة لضمان المتانة والجمال في كل زاوية. نولي اهتمامًا لكل التفاصيل الدقيقة لضمان أعلى مستوى من الجودة.</p>
   </div>
+
   <div class="about-section">
     <h3>مطابخ وأثاث حسب الطلب</h3>
-    <p>نوفر لك مطابخ وأثاث مصمم خصيصًا حسب ذوقك...</p>
+    <p>نوفر لك مطابخ وأثاث مصمم خصيصًا حسب ذوقك، مع اختيار الخشب، اللون، والأبعاد التي تناسب احتياجاتك ومساحة منزلك أو مكتبك.</p>
   </div>
+
   <div class="about-section">
     <h3>تصاميم ثلاثية الأبعاد قبل التنفيذ</h3>
-    <p>قبل بدء التنفيذ الفعلي، نعرض لك تصميم 3D لتشوف الشكل النهائي تمامًا...</p>
+    <p>قبل بدء التنفيذ الفعلي، نعرض لك تصميم 3D لتشوف الشكل النهائي تمامًا وتقرر كل التفاصيل براحتك. بهذه الطريقة تضمن أن المنتج النهائي مطابق لتوقعاتك.</p>
   </div>
+
   <div class="about-section">
     <h3>خدمة متكاملة</h3>
-    <p>من الفكرة للتنفيذ والتركيب، كل شيء يتم تحت إشراف فريقنا المحترف...</p>
+    <p>من الفكرة للتنفيذ والتركيب، كل شيء يتم تحت إشراف فريقنا المحترف لضمان الجودة والرضا التام. نحن نهتم بكل خطوة لضمان تجربة سلسة ومميزة لعملائنا.</p>
   </div>
 </section>
+
+<style>
+#about h2 {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  width: fit-content;
+  padding-bottom: 6px;
+  margin-bottom: 20px;
+}
+
+.about-section {
+  background: var(--card);
+  padding: 20px;
+  border-radius: var(--radius);
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.about-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+}
+
+.about-section h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.about-section p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+</style>
 
 <section id="projects">
   <h2>أعمالنا</h2>
   <div class="projects">
-    <div class="project" onclick="openGallery('gallery1')"><img src="img/A2.jpeg" alt=""><h3>غرفة نوم موردن</h3></div>
-    <div class="project" onclick="openGallery('gallery2')"><img src="img/B7.jpeg" alt=""><h3>غرف أطفال</h3></div>
-    <div class="project" onclick="openGallery('gallery3')"><img src="img/D3.jpeg" alt=""><h3>ديكورات حائط</h3></div>
-    <div class="project" onclick="openGallery('gallery4')"><img src="img/F3.webp" alt=""><h3>مكاتب وطاولات</h3></div>
-    <div class="project" onclick="openGallery('gallery5')"><img src="img/G4.jpg" alt=""><h3>تصميمات 3D</h3></div>
-    <div class="project" onclick="openGallery('gallery6')"><img src="img/C4.jpeg" alt=""><h3>مطابخ</h3></div>
+    <div class="project" onclick="openGallery('gallery1')"><img src="img/A2.png" alt=""><h3>غرفة نوم موردن</h3></div>
+    <div class="project" onclick="openGallery('gallery2')"><img src="img/B1.png" alt=""><h3>   غرف اطفال</h3></div>
+    <div class="project" onclick="openGallery('gallery3')"><img src="img/C37.png" alt=""><h3> مطابخ   </h3></div>
+    <div class="project" onclick="openGallery('gallery4')"><img src="img/F1.png" alt=""><h3>مكاتب وطاولات </h3></div>
+    <div class="project" onclick="openGallery('gallery5')"><img src="img/D9.png" alt=""><h3> ديكورات حائط  </h3></div>
+    <div class="project" onclick="openGallery('gallery6')"><img src="img/G2.png" alt=""><h3>تصميمات 3 d   </h3></div>
   </div>
 
   <!-- Galleries -->
-  <!-- Gallery structure كما هي بدون تعديل -->
- <div id="gallery1" class="gallery"> غرف نوم 
+  <div id="gallery1" class="gallery">
     <span class="close" onclick="closeGallery('gallery1')">&times;</span>
-    <img src="img/A1.jpeg" alt="">
-    <img src="img/A2.jpeg" alt="">
-    <img src="img/A3.jpeg" alt="">
-    0<img src="img/A4.jpeg" alt="">
-    <img src="img/A5.jpeg" alt="">
-    <img src="img/A6.jpeg" alt="">
-    <img src="img/A7.jpeg" alt="">
-    <img src="img/A8.jpeg" alt="">
-    <img src="img/A9.jpeg" alt="">
-    <img src="img/A10.jpeg" alt="">
-    <img src="img/A11.jpeg" alt="">
-    <img src="img/A12.jpeg" alt="">
-    <img src="img/A13.jpeg" alt="">
-    <img src="img/A14.jpeg" alt="">
-    <img src="img/A15.jpeg" alt="">
-    <img src="img/A16.jpeg" alt="">
-    <img src="img/A17.jpeg" alt="">
-    <img src="img/A18.jpeg" alt="">
-    <img src="img/A19.jpeg" alt="">
-    <img src="img/A20.jpeg" alt="">
-    <img src="img/A21.jpeg" alt="">
-    <img src="img/A22.jpeg" alt="">
-    <img src="img/A23.jpeg" alt="">
-    <img src="img/A24.jpeg" alt="">
-    <img src="img/A25.jpeg" alt="">
-    <img src="img/A26.jpeg" alt="">
-    <img src="img/A27.jpeg" alt="">
-    <img src="img/A28.jpeg" alt="">
-    <img src="img/A29.jpeg" alt="">
-    <img src="img/A30.jpeg" alt="">
-    <img src="img/A31.jpeg" alt="">
-    <img src="img/A32.jpeg" alt="">
-    <img src="img/A33.jpeg" alt="">
-    <img src="img/A34.jpeg" alt="">
-    <img src="img/A35.jpeg" alt="">
-    <img src="img/A36.jpeg" alt="">
-    <img src="img/A37.jpeg" alt="">
-    <img src="img/A38.jpeg" alt="">
-    <img src="img/A39.jpeg" alt="">
-    <img src="img/A40.jpeg" alt="">
+    <img src="img/A2.png" alt="">
+    <img src="img/A5.png" alt="">
+    <img src="img/A6.png" alt="">
+    <img src="img/A8.png" alt="">
+    <img src="img/A9.png" alt="">
+    <img src="img/A10.png" alt="">
+    <img src="img/A12.png" alt="">
+    <img src="img/A17.png" alt="">
+    <img src="img/A18.png" alt="">
+    <img src="img/A19.png" alt="">
+    <img src="img/A20.png" alt="">
+<img src="img/A21.png" alt="">
+    <img src="img/A22.png" alt="">
+    <img src="img/A23.png" alt="">
+    <img src="img/A24.png" alt="">
+    <img src="img/A25.png" alt="">
+    <img src="img/A26.png" alt="">
+    <img src="img/A28.png" alt="">
+    <img src="img/A31.png" alt="">
+    <img src="img/A35.png" alt="">
+    <img src="img/A36.png" alt="">
+    <img src="img/A38.png" alt="">
+    <img src="img/A39.png" alt="">
   </div>
-  <div id="gallery2" class="gallery">غرف اطفال 
+  <div id="gallery2" class="gallery">
     <span class="close" onclick="closeGallery('gallery2')">&times;</span>
     <img src="img/B1.jpeg" alt="">
     <img src="img/B2.jpeg" alt="">
-    <img src="img/B3.jpeg" alt="">
-    <img src="img/B4.jpeg" alt="">
-    <img src="img/B5.jpeg" alt="">
-    <img src="img/B6.jpeg" alt="">
+    <img src="img/B5.png" alt="">
     <img src="img/B7.jpeg" alt="">
-    <img src="img/B9.jpeg" alt="">
-    <img src="img/B10.jpeg" alt="">
-    <img src="img/B11.jpeg" alt="">
-    <img src="img/B12.jpeg" alt="">
-    <img src="img/B13.jpeg" alt="">
-    <img src="img/B14.jpeg" alt="">
-
+    <img src="img/B13.png" alt="">
+    <img src="img/B14.png" alt="">
   </div>
-  <div id="gallery3" class="gallery"> ديكورات
+  <div id="gallery3" class="gallery">
     <span class="close" onclick="closeGallery('gallery3')">&times;</span>
-    <img src="img/D1.jpeg" alt="">
-    <img src="img/D2.jpeg" alt="">
-    <img src="img/D3.jpeg" alt="">
-    <img src="img/D4.jpeg" alt="">
-    <img src="img/D5.jpeg" alt="">
-    <img src="img/D6.jpeg" alt="">
-    <img src="img/D7.jpeg" alt="">
-    <img src="img/D8.jpeg" alt="">
-    <img src="img/D9.jpeg" alt="">
-    <img src="img/D10.jpeg" alt="">
-    <img src="img/D11.jpeg" alt="">
-    <img src="img/D12.jpeg" alt="">
-    <img src="img/D13.jpeg" alt="">
-    <img src="img/D14.jpeg" alt="">
-
+    <img src="img/C2.png" alt="">
+    <img src="img/C3.png" alt="">
+    <img src="img/C4.png" alt="">
+    <img src="img/C5.png" alt="">
+    <img src="img/C7.png" alt="">
+    <img src="img/C15.png" alt="">
+    <img src="img/C16.png" alt="">
+    <img src="img/C17.png" alt="">
+    <img src="img/C19.png" alt="">
+    <img src="img/C22.png" alt="">
+    <img src="img/C23.png" alt="">
+    <img src="img/C26.png" alt="">
+    <img src="img/C28.png" alt="">
+    <img src="img/C29.png" alt="">
+    <img src="img/C30.png" alt="">
+    <img src="img/C35.png" alt="">
+    <img src="img/C36.png" alt="">
+    <img src="img/C37.png" alt="">
+    <img src="img/C38.png" alt="">
   </div>
-  <div id="gallery4" class="gallery"> مكاتب
+  <div id="gallery4" class="gallery">
     <span class="close" onclick="closeGallery('gallery4')">&times;</span>
-    <img src="img/F2.webp" alt="">
-    <img src="img/F3.webp" alt="">
-    <img src="img/F4.webp" alt="">
-    <img src="img/F5.webp" alt="">
-    <img src="img/F7.jpeg" alt="">
-    <img src="img/F8.jpeg" alt="">
+    <img src="img/F1.png" alt="">
+    <img src="img/F6.png" alt="">
+    <img src="img/F7.png" alt="">
+    <img src="img/F8.png" alt="">
+    <img src="img/F10.png" alt="">
   </div>
-   <div id="gallery5" class="gallery"> تصميمات3D
+   <div id="gallery5" class="gallery">
     <span class="close" onclick="closeGallery('gallery5')">&times;</span>
-    <img src="img/G1.webp" alt="">
-    <img src="img/G2.jpg" alt="">
-    <img src="img/G3.jpg" alt="">
-    <img src="img/G4.jpg" alt="">
-    <img src="img/G4.jpg" alt="">
-    <img src="img/G5.jpeg" alt="">
-    <img src="img/G6.jpeg" alt="">
-    <img src="img/G7.jpeg" alt="">
-    <img src="img/G8.jpeg" alt="">
-    <img src="img/G9.jpeg" alt="">
-    <img src="img/G10.jpeg" alt="">
-    <img src="img/G11.jpeg" alt="">
-    <img src="img/G12.jpeg" alt="">
-    <img src="img/F6.jpeg" alt="">
-
+    <img src="img/D7.png" alt="">
+    <img src="img/D8.png" alt="">
+    <img src="img/D9.png" alt="">
+    <img src="img/D10.png" alt="">
+    <img src="img/D11.png" alt="">
+    <img src="img/D12.png" alt="">
+    <img src="img/D13.png" alt="">
+    <img src="img/D14.png" alt="">
   </div>
-  <div id="gallery6" class="gallery"> مطابخ
+  <div id="gallery6" class="gallery">
     <span class="close" onclick="closeGallery('gallery6')">&times;</span>
-    <img src="img/C1.jpeg" alt="">
-    <img src="img/C2.jpeg" alt="">
-    <img src="img/C3.jpeg" alt="">
-    <img src="img/C4.jpeg" alt="">
-    <img src="img/C5.jpeg" alt="">
-    <img src="img/C6.jpeg" alt="">
-    <img src="img/C7.jpg" alt="">
-    <img src="img/C8.jpg" alt="">
-    <img src="img/C9.jpg" alt="">
-    <img src="img/C10.jpg." alt="">
-    <img src="img/C11.jpg" alt="">
-    <img src="img/C12.jpg" alt="">
-    <img src="img/C13.jpg" alt="">
-    <img src="img/C14.jpg" alt="">
-    <img src="img/C15.jpg" alt="">
-    <img src="img/C16.jpg" alt="">
-    <img src="img/C17.jpg" alt="">
-    <img src="img/C18.jpg" alt="">
-    <img src="img/C19.jpg" alt="">
-    <img src="img/C20.jpg" alt="">
-    <img src="img/C21.jpg" alt="">
-    <img src="img/C22.jpg" alt="">
-    <img src="img/C23.jpg" alt="">
-    <img src="img/C24.jpg" alt="">
-    <img src="img/C25.jpg" alt="">
-    <img src="img/C26.jpg" alt="">
-    <img src="img/C27.jpg" alt="">
-    <img src="img/C28.jpg" alt="">
-    <img src="img/C29.jpg" alt="">
-    <img src="img/C30.jpg" alt="">
-    <img src="img/C31.jpg" alt="">
-    <img src="img/C32.jpg" alt="">
-    <img src="img/C33.jpg" alt="">
-    <img src="img/C34.jpg" alt="">
-    <img src="img/C35.jpg" alt="">
-    <img src="img/C36.jpg" alt="">
-    <img src="img/C37.jpg" alt="">
-    <img src="img/C38.jpg" alt="">
-    <img src="img/C39.jpg" alt="">
-    <img src="img/C40.jpg" alt="">
+    <img src="img/G2.png" alt="">
+    <img src="img/G3.png" alt="">
+    <img src="img/G4.png" alt="">
+    <img src="img/G5.png" alt="">
+    <img src="img/G6.png" alt="">
+    <img src="img/G7.png" alt="">
+    <img src="img/G8.png" alt="">
+    <img src="img/G9.png" alt="">
+    <img src="img/G11.png" alt="">
+    <img src="img/G12.png" alt="">
   </div>
 </section>
 <section id="contact">
@@ -490,12 +442,6 @@ button:hover { background: #00acc1; }
   </form>
 </section>
 <section id="reviews">
-  
-</section>
-
-
-
-<section id="reviews">
   <h2>تقييم العملاء</h2>
   <input type="text" id="reviewName" placeholder="اسمك" />
   <div class="stars" id="stars">
@@ -507,40 +453,118 @@ button:hover { background: #00acc1; }
   </div>
   <textarea id="reviewText" placeholder="اكتب تقييمك هنا"></textarea>
   <button id="submitReview">إرسال التقييم</button>
+
   <div id="reviewsList"></div>
 </section>
+
+<script>
+const stars = document.querySelectorAll('#stars span');
+let rating = 0;
+
+// تلوين النجوم أثناء التقييم
+stars.forEach(star => {
+  star.addEventListener('mouseover', () => highlightStars(star.dataset.value));
+  star.addEventListener('click', () => {
+    rating = star.dataset.value;
+    highlightStars(rating); // تأكد أن اللون يبقى بعد الضغط
+  });
+});
+stars.forEach(star => {
+  star.addEventListener('mouseout', () => highlightStars(rating));
+});
+
+function highlightStars(value) {
+  stars.forEach(s => s.style.color = s.dataset.value <= value ? 'gold' : '#fff');
+}
+
+// حفظ التقييمات مع الاسم
+function saveReview(name, rating, text) {
+  const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+  reviews.push({ name: name.trim(), rating, text: text.trim() });
+  localStorage.setItem('reviews', JSON.stringify(reviews));
+  displayReviews();
+}
+
+// عرض التقييمات
+function displayReviews() {
+  const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+  const container = document.getElementById('reviewsList');
+  container.innerHTML = '';
+  reviews.forEach(r => {
+    const div = document.createElement('div');
+    div.classList.add('reviewItem');
+    div.innerHTML = `
+      <p><strong>${r.name}</strong></p>
+      <p>${'⭐'.repeat(r.rating)}</p>
+      <p>${r.text}</p>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// عند الضغط على زر الإرسال
+document.getElementById('submitReview').addEventListener('click', () => {
+  const name = document.getElementById('reviewName').value;
+  const text = document.getElementById('reviewText').value;
+  if(name.trim() !== '' && rating > 0 && text.trim() !== '') {
+    saveReview(name, rating, text);
+    document.getElementById('reviewText').value = '';
+    document.getElementById('reviewName').value = '';
+    rating = 0;
+    highlightStars(0);
+  } else {
+    alert('من فضلك املأ الاسم والتقييم والنص');
+  }
+});
+
+// عرض التقييمات عند تحميل الصفحة
+displayReviews();
+</script>
+
+<style>
+#stars span { font-size: 30px; cursor: pointer; color: #fff; }
+.reviewItem { background: #161616; color: #f5f5f5; margin: 10px 0; padding: 10px; border-radius: 8px; }
+textarea, input { width: 100%; padding: 8px; border-radius: 6px; margin-top: 10px; background:#161616; border:1px solid #333; color:#f5f5f5;}
+button { margin-top: 5px; padding: 8px 12px; border-radius: 6px; background: #00bcd4; border: none; cursor: pointer; }
+button:hover { background: #00acc1; }
+</style>
 
 <footer>
   © 2025 علي منصور محمد — جميع الحقوق محفوظة.
 </footer>
 
 <script>
-// Stars rating
-const stars = document.querySelectorAll('#stars span');
-let rating = 0;
-stars.forEach(star => {
-  star.addEventListener('mouseover', () => highlightStars(star.dataset.value));
-  star.addEventListener('click', () => { rating = star.dataset.value; highlightStars(rating); });
-});
-stars.forEach(star => { star.addEventListener('mouseout', () => highlightStars(rating)); });
-function highlightStars(value){ stars.forEach(s => s.style.color = s.dataset.value <= value ? 'gold' : '#fff'); }
-function saveReview(name,rating,text){ const reviews=JSON.parse(localStorage.getItem('reviews')||'[]'); reviews.push({name:name.trim(),rating,text:text.trim()}); localStorage.setItem('reviews',JSON.stringify(reviews)); displayReviews();}
-function displayReviews(){ const reviews=JSON.parse(localStorage.getItem('reviews')||'[]'); const container=document.getElementById('reviewsList'); container.innerHTML=''; reviews.forEach(r=>{ const div=document.createElement('div'); div.classList.add('reviewItem'); div.innerHTML=`<p><strong>${r.name}</strong></p><p>${'⭐'.repeat(r.rating)}</p><p>${r.text}</p>`; container.appendChild(div); }); }
-document.getElementById('submitReview').addEventListener('click',()=>{ const name=document.getElementById('reviewName').value; const text=document.getElementById('reviewText').value; if(name.trim()!=='' && rating>0 && text.trim()!==''){ saveReview(name,rating,text); document.getElementById('reviewText').value=''; document.getElementById('reviewName').value=''; rating=0; highlightStars(0); } else { alert('من فضلك املأ الاسم والتقييم والنص'); } });
-displayReviews();
-
-// Reveal on scroll
 const sections = document.querySelectorAll('section');
-const revealOnScroll = () => { const triggerBottom = window.innerHeight * 0.8; sections.forEach(sec => { const boxTop = sec.getBoundingClientRect().top; if(boxTop < triggerBottom){ sec.classList.add('visible'); } }); };
+const revealOnScroll = () => {
+  const triggerBottom = window.innerHeight * 0.8;
+  sections.forEach(sec => {
+    const boxTop = sec.getBoundingClientRect().top;
+    if(boxTop < triggerBottom){ sec.classList.add('visible'); }
+  });
+};
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
 
-// Gallery open/close
-function openGallery(id){
-  const gal=document.getElementById(id); gal.style.display='flex';
-  gal.addEventListener('click',function(e){ if(e.target===gal){ closeGallery(id); } });
-}
+function openGallery(id){ document.getElementById(id).style.display='flex'; }
 function closeGallery(id){ document.getElementById(id).style.display='none'; }
+function openGallery(id) {
+  const gal = document.getElementById(id);
+  gal.style.display = 'flex';
+
+  // إغلاق عند الضغط خارج الصورة
+  gal.addEventListener('click', function(e) {
+    if (e.target === gal) { // لو الكليك كان على الخلفية وليس الصورة
+      closeGallery(id);
+    }
+  });
+}
+
+function closeGallery(id) {
+  const gal = document.getElementById(id);
+  gal.style.display = 'none';
+}
+
 </script>
+
 </body>
 </html>
