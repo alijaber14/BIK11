@@ -357,18 +357,48 @@ footer {
   color: var(--muted);
   line-height: 1.7;
 }
+
 </style>
 
 <section id="projects">
   <h2>أعمالنا</h2>
   <div class="projects">
-    <div class="project" onclick="openGallery('gallery1')"><img src="img/A2.png" alt=""><h3>غرفة نوم موردن</h3></div>
-    <div class="project" onclick="openGallery('gallery2')"><img src="img/B1.png" alt=""><h3>   غرف اطفال</h3></div>
-    <div class="project" onclick="openGallery('gallery3')"><img src="img/C37.png" alt=""><h3> مطابخ   </h3></div>
-    <div class="project" onclick="openGallery('gallery4')"><img src="img/F1.png" alt=""><h3>مكاتب وطاولات </h3></div>
-    <div class="project" onclick="openGallery('gallery5')"><img src="img/D9.png" alt=""><h3> ديكورات حائط  </h3></div>
-    <div class="project" onclick="openGallery('gallery6')"><img src="img/G2.png" alt=""><h3>تصميمات 3 d   </h3></div>
-  </div>
+    <div class="project">
+  <img src="img/A2.png" alt="">
+  <h3>غرفة نوم مودرن</h3>
+  <button class="view-btn" onclick="openGallery('gallery1')">عرض الصور</button>
+</div>
+
+<div class="project">
+  <img src="img/B1.png" alt="">
+  <h3>غرف أطفال</h3>
+  <button class="view-btn" onclick="openGallery('gallery2')">عرض الصور</button>
+</div>
+
+<div class="project">
+  <img src="img/C37.png" alt="">
+  <h3>مطابخ</h3>
+  <button class="view-btn" onclick="openGallery('gallery3')">عرض الصور</button>
+</div>
+
+<div class="project">
+  <img src="img/F1.png" alt="">
+  <h3>مكاتب وطاولات</h3>
+  <button class="view-btn" onclick="openGallery('gallery4')">عرض الصور</button>
+</div>
+
+<div class="project">
+  <img src="img/D9.png" alt="">
+  <h3>ديكورات حائط</h3>
+  <button class="view-btn" onclick="openGallery('gallery5')">عرض الصور</button>
+</div>
+
+<div class="project">
+  <img src="img/G2.png" alt="">
+  <h3>تصميمات 3D</h3>
+  <button class="view-btn" onclick="openGallery('gallery6')">عرض الصور</button>
+</div>
+
 
   <!-- Galleries -->
   <div id="gallery1" class="gallery">
@@ -598,4 +628,3 @@ function closeGallery(id) {
 
 </body>
 </html>
-
